@@ -19,6 +19,10 @@ class Signatory extends Model
         'created_at',
         'updated_at'
     ];
+
+    public function rds() {
+        return $this->belongsTo('App\RDS', 'id_rds', 'id');
+    }
 }
 
 

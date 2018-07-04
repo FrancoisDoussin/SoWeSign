@@ -22,6 +22,8 @@ class CreateSignatoriesTable extends Migration
             $table->string('company');
             $table->boolean('has_signed')->default(0);
             $table->timestamps();
+
+            $table->foreign('id_rds')->references('id')->on('rds')->onDelete('cascade');
         });
     }
 

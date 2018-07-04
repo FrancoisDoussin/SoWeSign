@@ -25,4 +25,14 @@ class RDS extends Model
         'url_two_hash',
         'url_three_hash',
     ];
+
+    protected $dates = [
+        'date',
+        'created_at',
+        'updated_at'
+    ];
+
+    public function signatories() {
+        return $this->hasMany('App\Signatory');
+    }
 }
