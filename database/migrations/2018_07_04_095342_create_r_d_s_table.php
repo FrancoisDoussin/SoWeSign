@@ -15,7 +15,6 @@ class CreateRDSTable extends Migration
     {
         Schema::create('rds', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
             $table->string('name');
             $table->string('description');
             $table->dateTime('date');
@@ -31,6 +30,7 @@ class CreateRDSTable extends Migration
             $table->string('url_one_hash');
             $table->string('url_two_hash');
             $table->string('url_three_hash');
+            $table->timestamps();
         });
     }
 

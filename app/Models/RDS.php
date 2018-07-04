@@ -8,6 +8,9 @@ class RDS extends Model
 {
     protected $table = 'rds';
 
+    // auto load signatories when fetching model
+    protected $with = array('signatories');
+
     protected $fillable = [
         'name',
         'description',
@@ -25,4 +28,14 @@ class RDS extends Model
         'url_two_hash',
         'url_three_hash',
     ];
+
+    protected $dates = [
+        'date',
+        'created_at',
+        'updated_at'
+    ];
+
+    public function signatories() {
+        return $this->hasMany('App\Models\Signatory', 'id_rds', 'id');
+    }
 }
