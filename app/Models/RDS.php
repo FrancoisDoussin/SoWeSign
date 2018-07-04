@@ -9,7 +9,7 @@ class RDS extends Model
     protected $table = 'rds';
 
     // auto load signatories when fetching model
-//    protected $with = array('signatories');
+    protected $with = array('signatories');
 
     protected $fillable = [
         'name',
