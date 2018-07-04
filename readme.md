@@ -14,3 +14,4 @@
 - run migrations `php artisan migrate`
 - install front dependencies `npm install`
 - build front assets `npm run dev`
+- launch server `php artisan serve` and go to `http://localhost:8000`
