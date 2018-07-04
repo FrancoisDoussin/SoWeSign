@@ -8,6 +8,9 @@ class RDS extends Model
 {
     protected $table = 'rds';
 
+    // auto load signatories when fetching model
+//    protected $with = array('signatories');
+
     protected $fillable = [
         'name',
         'description',
@@ -33,6 +36,6 @@ class RDS extends Model
     ];
 
     public function signatories() {
-        return $this->hasMany('App\Signatory');
+        return $this->hasMany('App\Models\Signatory', 'id_rds', 'id');
     }
 }

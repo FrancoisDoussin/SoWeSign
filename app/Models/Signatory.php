@@ -20,8 +20,12 @@ class Signatory extends Model
         'updated_at'
     ];
 
+    protected $casts = [
+        'has_signed' => 'boolean'
+    ];
+
     public function rds() {
-        return $this->belongsTo('App\RDS', 'id_rds', 'id');
+        return $this->belongsTo('App\Models\RDS', 'id_rds', 'id');
     }
 }
 
