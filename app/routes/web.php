@@ -11,22 +11,9 @@
 |
 */
 
-use Smalot\PdfParser\Parser;
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/test', function () {
-//    $parser = new Parser();
-//    $pdf = $parser->parseFile('test.pdf');
-//
-//   foreach($pdf->getPages() as $i => $page) {
-//       dump($page);
-//   }
-
-    $pdf2text = new \Pdf2text\Pdf2text('test.pdf');
-    $output = $pdf2text->decode();
-
-    dd($output);
-});
+Route::get('/', 'RDSController@index')->name('index');
+Route::post('/create-admin', 'RDSController@createAdmin')->name('create-admin');
+Route::post('/context', 'RDSController@context')->name('context');
+Route::post('/signatories', 'RDSController@signatories')->name('signatories');
+Route::post('/invitation', 'RDSController@invitation')->name('invitation');
+Route::post('/confirmation', 'RDSController@confirmation')->name('confirmation');
