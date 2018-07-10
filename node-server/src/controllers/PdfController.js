@@ -1,42 +1,51 @@
 import PDFParser from 'pdf2json'
 
 export default class PdfController {
-  constructor() {
-    this.pdfParser = new PDFParser()
-  }
-
   index(req, res) {
     return res.json({'message': 'Welcome'})
   }
 
   pdf(req, res) {
-    this.pdfParser.loadPDF(req.file.path)
+    const pdfParser = new PDFParser()
 
-    this.pdfParser.on("pdfParser_dataError", errData => {
+    pdfParser.loadPDF(req.file.path)
+
+    pdfParser.on("pdfParser_dataError", errData => {
       console.error('error', errData)
 
-      return res.json({'Message': 'Error loading PDF file'})
+      return res.json({
+        message: 'Error loading PDF file'
+      })
     })
 
-    this.pdfParser.on("pdfParser_dataReady", pdfData => {
-      const pages = pdfData.formImage.Pages
+    pdfParser.on("pdfParser_dataReady", pdfData => {
+      console.error('success', pdfData)
 
-      const data = [];
-
-      const regexp = /^(%23)(SIGN)(.*)(%23)$/
-
-      pages.forEach(page => {
-        page.Texts.forEach(text => {
-          if(text.R[0].T.match(regexp)) {
-            data.push(text)
-          }
-        })
-      })
+      const data = this._parsePDF(pdfData)
 
       return res.json({
-        'Message': 'PDF parsed successfully',
-        'Data': data
+        message: 'PDF successfully parsed',
+        data: data
       })
     })
+  }
+
+  _parsePDF(pdfData) {
+    const pages = pdfData.formImage.Pages
+
+    const data = [];
+
+    const regexp = /^(%23)(SIGN)(.*)(%23)$/
+
+    for (let i = 0; i < pages.length; i++) {
+      pages[i].Texts.forEach(text => {
+        if(text.R[0].T.match(regexp)) {
+          text.page = i+1;
+          data.push(text)
+        }
+      })
+    }
+
+    return data
   }
 }
