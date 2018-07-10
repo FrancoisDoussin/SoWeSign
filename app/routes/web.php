@@ -11,6 +11,22 @@
 |
 */
 
+use Smalot\PdfParser\Parser;
+
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/test', function () {
+//    $parser = new Parser();
+//    $pdf = $parser->parseFile('test.pdf');
+//
+//   foreach($pdf->getPages() as $i => $page) {
+//       dump($page);
+//   }
+
+    $pdf2text = new \Pdf2text\Pdf2text('test.pdf');
+    $output = $pdf2text->decode();
+
+    dd($output);
 });
