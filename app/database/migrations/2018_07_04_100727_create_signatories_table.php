@@ -20,6 +20,7 @@ class CreateSignatoriesTable extends Migration
             $table->string('last_name');
             $table->string('email');
             $table->string('company');
+            $table->string('tag_number');
             $table->boolean('has_signed')->default(0);
             $table->timestamps();
 

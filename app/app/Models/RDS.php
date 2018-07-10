@@ -12,14 +12,16 @@ class RDS extends Model
     protected $with = array('signatories');
 
     protected $fillable = [
-        'name',
+        'subject',
         'description',
         'date',
         'place',
+        'url',
         'file_path',
         'invitation_subject',
+        'invitation_description',
         'invitation_delay',
-        'invitation_frequence',
+        'invitation_frequency',
         'invitation_quantity',
         'admin_first_name',
         'admin_last_name',

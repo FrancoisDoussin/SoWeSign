@@ -15,14 +15,16 @@ class CreateRDSTable extends Migration
     {
         Schema::create('rds', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->nullable();
+            $table->string('subject')->nullable();
             $table->string('description')->nullable();
             $table->dateTime('date')->nullable();
             $table->string('place')->nullable();
+            $table->string('url')->nullable();
             $table->string('file_path')->nullable();
             $table->string('invitation_subject')->nullable();
+            $table->string('invitation_description')->nullable();
             $table->integer('invitation_delay')->nullable();
-            $table->integer('invitation_frequence')->nullable();
+            $table->integer('invitation_frequency')->nullable();
             $table->integer('invitation_quantity')->nullable();
             $table->string('admin_first_name')->nullable();
             $table->string('admin_last_name')->nullable();

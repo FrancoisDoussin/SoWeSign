@@ -12,6 +12,7 @@ class Signatory extends Model
         'last_name',
         'email',
         'company',
+        'tag_number',
         'has_signed',
     ];
 
