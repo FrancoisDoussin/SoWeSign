@@ -13,26 +13,132 @@ body {
   color: $secondary;
 }
 
-.section { margin-top: rem(60); margin-bottom: calc( 6.25rem + #{$footer-height}); }
+.section { margin-top: rem(45); margin-bottom: calc( 3.25rem + #{$footer-height}); }
 
 a, a:visited {
   text-decoration: none;
-  color: $dark-primary;
+  color: $primary;
 
   &:hover, &:focus {
+    text-decoration: none;
     color: $dark-primary;
+  }
+}
+
+@include media-breakpoint-up(sm) {
+
+  .section { margin-top: rem(60); margin-bottom: calc( 6.25rem + #{$footer-height}); }
+}
+
+/*----------  Navbar  ----------*/
+.navbar {
+  border-bottom: rem(1) solid $gray;
+  background-color: $white;
+  z-index: 1000;
+
+  &.active { box-shadow: 0 rem(2) rem(4) 0 rgba(0,0,0,0.5); }
+}
+
+// Logo
+.navbar-brand-mobile img { width: 60%; }
+.navbar-brand { display: none; }
+
+// Burger icon
+.navbar-light .navbar-toggler {
+  border: none;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+// Menu items
+.nav-item {
+  text-transform: uppercase;
+  font-size: rem(14);
+  border-bottom: rem(1) solid $gray;
+  width: 100%;
+}
+
+// Links
+.nav-link, .nav-link:visited {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: rem(20);
+  padding: rem(20);
+
+  color: $secondary;
+
+  &:hover, &:focus { color: $primary; }
+}
+.navbar-light .navbar-nav .active > .nav-link {
+  color: $secondary;
+  font-weight: 700;
+
+  &:before {
+    content: '';
+    position: absolute;
+    width: rem(4);
+    height: 100%;
+    background-color: $primary;
+    left: rem(-20);
+  }
+}
+
+// Dropdown menu mobile
+.dropdown-menu { border: none; }
+.dropdown-item:hover, .dropdown-item:focus { background-color: $white; }
+.dropdown-toggle:after { display: none; }
+
+@include media-breakpoint-up(sm) {
+
+  .navbar {
+    &.active { box-shadow: none; }
+  }
+
+  // Logo
+  .navbar-brand-mobile { display: none; }
+  .navbar-brand { display: block; }
+
+  // Menu items
+  .nav-item {
+    border-bottom: none;
+    width: auto;
+  }
+
+  // Links
+  .navbar-light .navbar-nav .active > .nav-link {
+
+    &:before { content: none; }
+  }
+  .nav-link, .nav-link:visited {
+    margin-left: 0;
+  }
+
+  // Dropdown menu mobile
+  .dropdown-menu {
+    top: rem(69); left: rem(8);
+    box-shadow: 0 rem(2) rem(4) 0 rgba(0,0,0,0.5);
+    border-radius: 0;
   }
 }
 
 /*----------  Titles  ----------*/
 h1 {
   font-size: rem(24);
-  margin-bottom: rem(55);
+  margin-bottom: rem(40);
 
   strong {
     color: $primary;
     font-weight: 700;
   }
+}
+
+@include media-breakpoint-up(sm) {
+
+  h1 { margin-bottom: rem(55); }
 }
 
 /*----------  Buttons  ----------*/
@@ -119,6 +225,7 @@ h1 {
 }
 
 @include media-breakpoint-up(sm) {
+
   .footer__item {
     padding-top: 0;
     line-height: inherit;
