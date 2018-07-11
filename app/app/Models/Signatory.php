@@ -8,10 +8,12 @@ class Signatory extends Model
 {
     protected $fillable = [
         'id_rds',
-        'first_name',
-        'last_name',
+        'firstname',
+        'lastname',
         'email',
         'company',
+        'url_hash',
+        'sign_coord',
         'tag_number',
         'has_signed',
     ];
@@ -22,8 +24,13 @@ class Signatory extends Model
     ];
 
     protected $casts = [
-        'has_signed' => 'boolean'
+        'has_signed' => 'boolean',
+        'sign_coord' => 'array'
     ];
+
+    public function getCoordAttribute() {
+       return json_decode($this->sign_coord);
+    }
 
     public function rds() {
         return $this->belongsTo('App\Models\RDS', 'id_rds', 'id');

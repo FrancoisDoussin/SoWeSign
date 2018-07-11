@@ -16,10 +16,12 @@ class CreateSignatoriesTable extends Migration
         Schema::create('signatories', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('id_rds');
-            $table->string('first_name');
-            $table->string('last_name');
+            $table->string('firstname');
+            $table->string('lastname');
             $table->string('email');
             $table->string('company');
+            $table->string('url_hash');
+            $table->json('sign_coord');
             $table->string('tag_number');
             $table->boolean('has_signed')->default(0);
             $table->timestamps();

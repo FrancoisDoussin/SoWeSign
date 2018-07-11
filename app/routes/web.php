@@ -12,8 +12,19 @@
 */
 
 Route::get('/', 'RDSController@index')->name('index');
-Route::post('/create-admin', 'RDSController@createAdmin')->name('create-admin');
-Route::post('/context', 'RDSController@context')->name('context');
-Route::post('/signatories', 'RDSController@signatories')->name('signatories');
-Route::post('/invitation', 'RDSController@invitation')->name('invitation');
-Route::post('/confirmation', 'RDSController@confirmation')->name('confirmation');
+
+Route::post('/parse-pdf', 'RDSController@parsePDF')->name('parse-pdf');
+
+Route::get('/admin', 'RDSController@createAdmin')->name('create-admin');
+Route::post('/admin', 'RDSController@storeAdmin')->name('store-admin');
+
+Route::get('/context', 'RDSController@createContext')->name('create-context');
+Route::post('/context', 'RDSController@storeContext')->name('store-context');
+
+Route::get('/signatories', 'RDSController@createSignatories')->name('create-signatories');
+Route::post('/signatories', 'RDSController@storeSignatories')->name('store-signatories');
+
+Route::get('/invitation', 'RDSController@createInvitation')->name('create-invitation');
+Route::post('/invitation', 'RDSController@storeInvitation')->name('store-invitation');
+
+Route::get('/confirmation', 'RDSController@confirmation')->name('confirmation');

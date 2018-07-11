@@ -19,7 +19,7 @@ export default class PdfController {
     })
 
     pdfParser.on("pdfParser_dataReady", pdfData => {
-      console.error('success', pdfData)
+      console.log('PDF successfully parsed')
 
       const data = this._parsePDF(pdfData)
 
@@ -40,7 +40,9 @@ export default class PdfController {
     for (let i = 0; i < pages.length; i++) {
       pages[i].Texts.forEach(text => {
         if(text.R[0].T.match(regexp)) {
-          text.page = i+1;
+          var match = text.R[0].T.match(regexp)
+          text.user_tag = match[3]
+          text.page = i+1
           data.push(text)
         }
       })
