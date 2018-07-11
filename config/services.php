@@ -35,8 +35,4 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
-    'pdf_microservice' => [
-        'url' => env('PDF_MICROSERVICE_URL'),
-    ],
-
 ];
