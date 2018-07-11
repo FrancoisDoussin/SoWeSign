@@ -11,22 +11,20 @@
 |
 */
 
-use Smalot\PdfParser\Parser;
+Route::get('/', 'RDSController@index')->name('index');
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::post('/parse-pdf', 'RDSController@parsePDF')->name('parse-pdf');
 
-Route::get('/test', function () {
-//    $parser = new Parser();
-//    $pdf = $parser->parseFile('test.pdf');
-//
-//   foreach($pdf->getPages() as $i => $page) {
-//       dump($page);
-//   }
+Route::get('/admin', 'RDSController@createAdmin')->name('create-admin');
+Route::post('/admin', 'RDSController@storeAdmin')->name('store-admin');
 
-    $pdf2text = new \Pdf2text\Pdf2text('test.pdf');
-    $output = $pdf2text->decode();
+Route::get('/context', 'RDSController@createContext')->name('create-context');
+Route::post('/context', 'RDSController@storeContext')->name('store-context');
 
-    dd($output);
-});
+Route::get('/signatories', 'RDSController@createSignatories')->name('create-signatories');
+Route::post('/signatories', 'RDSController@storeSignatories')->name('store-signatories');
+
+Route::get('/invitation', 'RDSController@createInvitation')->name('create-invitation');
+Route::post('/invitation', 'RDSController@storeInvitation')->name('store-invitation');
+
+Route::get('/confirmation', 'RDSController@confirmation')->name('confirmation');

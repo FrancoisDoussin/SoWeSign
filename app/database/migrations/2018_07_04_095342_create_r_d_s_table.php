@@ -15,21 +15,23 @@ class CreateRDSTable extends Migration
     {
         Schema::create('rds', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('description');
-            $table->dateTime('date');
-            $table->string('place');
-            $table->string('file_path');
-            $table->string('invitation_subject');
-            $table->integer('invitation_delay');
-            $table->integer('invitation_frequence');
-            $table->integer('invitation_quantity');
-            $table->string('admin_first_name');
-            $table->string('admin_last_name');
-            $table->string('admin_email');
-            $table->string('url_one_hash');
-            $table->string('url_two_hash');
-            $table->string('url_three_hash');
+            $table->string('subject')->nullable();
+            $table->string('description')->nullable();
+            $table->dateTime('date')->nullable();
+            $table->string('place')->nullable();
+            $table->string('url')->nullable();
+            $table->string('file_path')->nullable();
+            $table->string('invitation_subject')->nullable();
+            $table->string('invitation_description')->nullable();
+            $table->integer('invitation_delay')->nullable();
+            $table->integer('invitation_frequency')->nullable();
+            $table->integer('invitation_quantity')->nullable();
+            $table->string('admin_first_name')->nullable();
+            $table->string('admin_last_name')->nullable();
+            $table->string('admin_email')->nullable();
+            $table->string('url_one_hash')->nullable();
+            $table->string('url_two_hash')->nullable();
+            $table->string('url_three_hash')->nullable();
             $table->timestamps();
         });
     }
