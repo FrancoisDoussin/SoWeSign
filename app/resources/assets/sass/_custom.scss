@@ -2,5 +2,125 @@
 // Custom style
 // ==========================================================================
 
-/*----------  Commentaire sub  ----------*/
+/*----------  Base layout  ----------*/
+html {
+  position: relative;
+  min-height: 100vh;
+}
 
+body {
+  margin-bottom: rem(50); /* Margin bottom corresponds to footer height */
+  color: $secondary;
+}
+
+.section { margin-top: rem(60); margin-bottom: calc( 6.25rem + #{$footer-height}); }
+
+a, a:visited {
+  text-decoration: none;
+  color: $dark-primary;
+
+  &:hover, &:focus {
+    color: $dark-primary;
+  }
+}
+
+/*----------  Titles  ----------*/
+h1 {
+  font-size: rem(24);
+  margin-bottom: rem(55);
+
+  strong {
+    color: $primary;
+    font-weight: 700;
+  }
+}
+
+/*----------  Buttons  ----------*/
+.btn {
+  padding: rem(15) rem(50);
+
+  border: rem(1) solid;
+  border-radius: rem(3);
+  background-color: $white;
+  text-transform: uppercase;
+  font-size: rem(16);
+}
+
+/*----------  Buttons - variantes de couleur  ----------*/
+.btn-default {
+  border-color: $primary;
+  color: $primary;
+
+  &:hover {
+    background-color: $primary;
+    color: $white;
+  }
+}
+.btn-danger {
+  border-color: $danger;
+  color: $danger;
+}
+
+/*----------  Lead intro  ----------*/
+.lead {
+  font-size: 1rem;
+  margin-bottom: rem(70);
+}
+
+/*----------  Droparea  ----------*/
+.droparea {
+  position: relative;
+  width: 100%;
+  height: rem(345);
+  margin-bottom: rem(100);
+  background: $light-gray url("../img/icon-drag-drop.svg") no-repeat center center;
+  background-size: 20%;
+}
+
+.droparea__text {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+
+  text-align: center;
+  font-size: rem(18);
+  font-weight: 700;
+}
+
+.droparea__btn {
+  position: absolute;
+  bottom: rem(-100);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/*----------  Footer  ----------*/
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100vw; height: rem(50);
+  margin-top: rem(100);
+
+  line-height: rem(50);
+  border-top: rem(1) solid $gray;
+  font-size: rem(12);
+
+}
+.footer__nav {
+  margin-bottom: 0;
+  padding-left: 0;
+
+  list-style: none;
+}
+.footer__item {
+  padding-top: rem(10);
+  text-align: center;
+  line-height: normal;
+}
+
+@include media-breakpoint-up(sm) {
+  .footer__item {
+    padding-top: 0;
+    line-height: inherit;
+  }
+}
