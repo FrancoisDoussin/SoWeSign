@@ -13,6 +13,7 @@
         "laravel/framework": "5.6.*",
         "laravel/tinker": "^1.0",
         "prettus/l5-repository": "^2.6",
+        "setasign/fpdi-fpdf": "^2.0",
         "smalot/pdfparser": "^0.13.2"
     },
     "require-dev": {

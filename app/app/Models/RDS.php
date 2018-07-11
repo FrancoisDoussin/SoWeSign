@@ -17,7 +17,7 @@ class RDS extends Model
         'date',
         'place',
         'url',
-        'file_path',
+        'file_name',
         'invitation_subject',
         'invitation_description',
         'invitation_delay',

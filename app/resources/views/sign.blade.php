@@ -3,11 +3,13 @@
 @section('content')
     Salut {{$signatory->firstname}} !
 
-    <iframe src="{{config('app.url') . '/storage' .$signatory->rds->file_path}}" frameborder="0"></iframe>
+    <iframe src="{{config('app.url') . '/storage/pdf/' . $signatory->rds->file_name . '.pdf'}}" frameborder="0"></iframe>
 
-    <div id="signature-pad" class="signature-pad" style="height: 500px; width: 800px">
+    <div id="error"></div>
+
+    <div id="signature-pad" class="signature-pad">
         <div class="signature-pad--body">
-            <canvas></canvas>
+            <canvas style="border: 1px solid black;width: 200px; height: 200px"></canvas>
         </div>
         <div class="signature-pad--footer">
             <div class="description">Sign above</div>
@@ -18,8 +20,6 @@
             </div>
         </div>
     </div>
-
-    <div id="error"></div>
 
     <script
             src="https://code.jquery.com/jquery-3.3.1.min.js"

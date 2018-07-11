@@ -58,8 +58,9 @@ class RDSController extends Controller
         $rds->admin_last_name = $request->get('admin_last_name');
         $rds->admin_email = $request->get('admin_email');
 
-        $file_path = str_replace('public', '', session('file_path'));
-        $rds->file_path = $file_path;
+        $file_name = str_replace('public/pdf/', '', session('file_path'));
+        $file_name = str_replace('.pdf', '', $file_name);
+        $rds->file_name = $file_name;
 
         session(['rds' => $rds]);
 
