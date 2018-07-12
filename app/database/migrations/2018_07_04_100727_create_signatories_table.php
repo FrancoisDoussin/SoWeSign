@@ -22,7 +22,7 @@ class CreateSignatoriesTable extends Migration
             $table->string('company');
             $table->string('url_hash');
             $table->json('sign_coord');
-            $table->string('sign_path')->nullable();
+            $table->string('sign_name')->nullable();
             $table->string('tag_number');
             $table->boolean('has_signed')->default(0);
             $table->timestamps();

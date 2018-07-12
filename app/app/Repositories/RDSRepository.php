@@ -193,7 +193,7 @@ class RDSRepository extends BaseRepository
             }
 
             // get sign path
-            $sign_path = storage_path('app/public' . $signatory->sign_path);
+            $sign_path = storage_path('app/public/sign/' . $signatory->sign_name);
 
             // set output path
             $output_path = storage_path('app/public/pdf/signed/' . $rds->file_name . '.pdf');

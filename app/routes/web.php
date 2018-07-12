@@ -31,7 +31,9 @@ Route::post('/signatories', 'RDSController@storeSignatories')->name('store-signa
 Route::get('/invitation', 'RDSController@createInvitation')->name('create-invitation');
 Route::post('/invitation', 'RDSController@storeInvitation')->name('store-invitation');
 
-Route::get('/confirmation', 'RDSController@confirmation')->name('confirmation');
+Route::get('/manage/{hash}', 'RDSController@manage')->name('manage');
+Route::get('/state/{hash}', 'RDSController@state')->name('state');
+Route::get('/download/{hash}', 'RDSController@download')->name('download');
 
 Route::get('/sign/{hash}', 'SignatoryController@sign')->name('sign');
 

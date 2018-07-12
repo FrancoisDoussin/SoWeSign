@@ -19,7 +19,7 @@ class SignatoryController extends Controller
     public function sign(Request $request, $hash)
     {
         // get signatory
-        $signatory = Signatory::where('url_hash', '=', 'sign/' . $hash)->get()->first();
+        $signatory = Signatory::where('url_hash', '=', $hash)->get()->first();
 
         if(!$signatory) {
             return redirect('/error')->with('error', 'No signatories detected');
@@ -38,13 +38,13 @@ class SignatoryController extends Controller
             $file_path = $request->file('sign')->store('public/sign');
 
             // clean path
-            $file_path = str_replace('public', '', $file_path);
+            $file_name = str_replace('public/sign/', '', $file_path);
 
             // get signatory
             $signatory = Signatory::find($request->get('signatory_id'));
 
             // update signatory
-            $signatory->sign_path = $file_path;
+            $signatory->sign_name = $file_name;
             $signatory->has_signed = 1;
 
             // add sign to pdf
