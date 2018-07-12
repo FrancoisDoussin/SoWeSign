@@ -1,28 +1,38 @@
 @extends('layout.base')
 
 @section('content')
+    <h1 class="text-center">Tags liés au contexte</h1>
+
     <form action="{{ route('store-context') }}" enctype="multipart/form-data" method="POST">
         @csrf
-        <h3>Meeting</h3>
-        <label for="subject">Subject:</label>
-        <input id="subject" name="subject" type="text" value="{{$meeting['subject'] or ''}}">
+        <h2>#Meeting</h2>
+        <div class="form-group">
+            <input id="subject" class="form-control form-control-lg" name="subject" type="text" value="{{$meeting['subject'] or ''}}" placeholder="Sujet">
+        </div>
 
-        <label for="description">Description:</label>
-        <textarea id="description" name="description">{{$meeting['description'] or ''}}</textarea>
+        <div class="form-group">
+            <textarea id="description" class="form-control form-control-lg" name="description" placeholder="Description">{{$meeting['description'] or ''}}</textarea>
+        </div>
 
-        <h3>Schedule</h3>
-        <label for="date">Date:</label>
-        <input id="date" name="date" type="date" value="{{$schedule['date'] or ''}}">
+        <h2>#Schedule</h2>
+        <div class="row">
+            <div class="form-group col-6">
+                <input id="date" class="form-control form-control-lg" name="date" type="date" value="{{$schedule['date'] or ''}}" data-toggle="tooltip" data-placement="top" title="Date de la réunion">
+            </div>
+            <div class="form-group col-6">
+                <input id="time" class="form-control form-control-lg" name="time" type="time" value="{{$schedule['time'] or ''}}" data-toggle="tooltip" data-placement="top" title="Heure de la réunion">
+            </div>
+        </div>
 
-        <label for="time">Time:</label>
-        <input id="time" name="time" type="time" value="{{$schedule['time'] or ''}}">
+        <div class="form-group">
+            <input id="place" class="form-control form-control-lg" name="place" type="text" value="{{$schedule['place'] or ''}}" placeholder="Lieu de réunion">
+        </div>
+        <div class="form-group">
+            <input id="url" class="form-control form-control-lg" name="url" type="text" value="{{$schedule['url'] or ''}}" placeholder="URL">
+        </div>
 
-        <label for="place">Place:</label>
-        <input id="place" name="place" type="text" value="{{$schedule['place'] or ''}}">
-
-        <label for="url">Url:</label>
-        <input id="url" name="url" type="text" value="{{$schedule['url'] or ''}}">
-
-        <button type="submit">Suivant</button>
+        <div class="buttons">
+            <button type="submit" class="btn btn-default">Suivant</button>
+        </div>
     </form>
 @endsection

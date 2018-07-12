@@ -17,7 +17,6 @@ body {
 
 a, a:visited {
   text-decoration: none;
-  color: $primary;
 
   &:hover, &:focus {
     text-decoration: none;
@@ -144,6 +143,14 @@ h1 {
   }
 }
 
+h2 {
+  margin-bottom: rem(20);
+
+  font-size: rem(12);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
 @include media-breakpoint-up(sm) {
 
   h1 { margin-bottom: rem(55); }
@@ -161,7 +168,11 @@ h1 {
   background-color: $white;
   text-transform: uppercase;
   font-size: rem(16);
+
+  &:hover, &:focus { color: $white !important; }
 }
+
+.buttons { text-align: center; }
 
 @include media-breakpoint-up(sm) {
 
@@ -178,11 +189,9 @@ h1 {
   border-color: $primary;
   color: $primary;
 
-  &:hover {
-    background-color: $primary;
-    color: $white;
-  }
+  &:hover { background-color: $primary; }
 }
+
 .btn-danger {
   border-color: $danger;
   color: $danger;
@@ -263,6 +272,7 @@ h1 {
   line-height: rem(30);
   border: none;
   border-bottom: rem(1) inset $gray;
+  border-radius: rem(3);
 
   &::placeholder {
     color: #9B9B9B;

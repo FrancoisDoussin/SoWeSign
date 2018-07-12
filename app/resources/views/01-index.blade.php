@@ -31,10 +31,10 @@
                     <br>
                     téléchargez le fichier
                 </p>
-                <form action="{{ route('create-admin') }}" enctype="multipart/form-data" method="POST">
+                <form action="{{ route('parse-pdf') }}" enctype="multipart/form-data" method="POST">
                     @csrf
                     <div class="form-group">
-                        <input type="file" name="file" class="form-control-file">
+                        <input type="file" name="pdf" class="form-control-file">
                     </div>
                     <button type="submit" class="btn btn-default droparea__btn">Continuer</button>
                 </form>

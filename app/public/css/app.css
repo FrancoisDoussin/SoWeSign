@@ -10432,7 +10432,6 @@ body {
 a,
 a:visited {
   text-decoration: none;
-  color: #FFA500;
 }
 
 a:hover,
@@ -10601,6 +10600,13 @@ h1 strong {
   font-weight: 700;
 }
 
+h2 {
+  margin-bottom: 1.25rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
 @media (min-width: 576px) {
   h1 {
     margin-bottom: 3.4375rem;
@@ -10621,6 +10627,15 @@ h1 strong {
   font-size: 1rem;
 }
 
+.btn:hover,
+.btn:focus {
+  color: #ffffff !important;
+}
+
+.buttons {
+  text-align: center;
+}
+
 @media (min-width: 576px) {
   .btn {
     display: inline-block;
@@ -10639,7 +10654,6 @@ h1 strong {
 
 .btn-default:hover {
   background-color: #FFA500;
-  color: #ffffff;
 }
 
 .btn-danger {
@@ -10728,6 +10742,7 @@ h1 strong {
   line-height: 1.875rem;
   border: none;
   border-bottom: 0.0625rem inset #E6E6E6;
+  border-radius: 0.1875rem;
 }
 
 .form-control::-webkit-input-placeholder {
