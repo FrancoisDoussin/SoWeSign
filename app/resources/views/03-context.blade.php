@@ -16,10 +16,10 @@
 
         <h2>#Schedule</h2>
         <div class="row">
-            <div class="form-group col-6">
+            <div class="form-group col-sm-6">
                 <input id="date" class="form-control form-control-lg" name="date" type="date" value="{{$schedule['date'] or ''}}" data-toggle="tooltip" data-placement="top" title="Date de la réunion">
             </div>
-            <div class="form-group col-6">
+            <div class="form-group col-sm-6">
                 <input id="time" class="form-control form-control-lg" name="time" type="time" value="{{$schedule['time'] or ''}}" data-toggle="tooltip" data-placement="top" title="Heure de la réunion">
             </div>
         </div>
