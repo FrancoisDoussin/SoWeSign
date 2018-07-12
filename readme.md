@@ -14,6 +14,7 @@
 - go to App folder `cd app`
 - install back dependencies `composer install`
 - copy `.env.example` to `.env` and set database credentials
+- generate key `php artisan key:generate`
 - run migrations `php artisan migrate`
 - install front dependencies `npm install`
 - build front assets `npm run dev`

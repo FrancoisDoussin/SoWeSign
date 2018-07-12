@@ -5,10 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>SoWeSign</title>
-    <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-    {{--<link rel="stylesheet" href="{{asset('storage/css/signature-pad.css')}}">--}}
+    <link rel="stylesheet" href="{{asset('css/app.css')}}"/>
+    @yield('styles')
 </head>
 <body>
+    @include('layout.navbar')
     <div class="container">
         {{--Session errors--}}
         @if (session('error'))
@@ -27,8 +28,12 @@
                 </ul>
             </div>
         @endif
-
-        @yield('content')
+        <div class="section">
+            @yield('content')
+        </div>
     </div>
+    @include('layout.footer')
+    <script type="text/javascript" src="{{asset('js/app.js')}}"></script>
+    @yield('script')
 </body>
 </html>

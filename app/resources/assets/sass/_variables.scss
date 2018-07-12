@@ -1,8 +1,35 @@
+// ==========================================================================
+// Colors
+// ==========================================================================
 
-// Body
-$body-bg: #f5f8fa;
+$primary: #FFA500;
+$dark-primary: #C57F00;
+$secondary: #4A4A4A;
+$gray: #E6E6E6;
+$light-gray: #FAFAFA;
+$success: #3BB273;
+$danger: #F71735;
+$white: #ffffff;
 
+// ==========================================================================
 // Typography
-$font-family-sans-serif: "Raleway", sans-serif;
+// ==========================================================================
+
+$icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
+$font-family-sans-serif: Tahoma, sans-serif;
+$font-family-base: $font-family-sans-serif;
 $font-size-base: 0.9rem;
+$font-size-base-px: 16;
 $line-height-base: 1.6;
+
+// ==========================================================================
+// Navbar
+// ==========================================================================
+
+$navbar-default-bg: #fff;
+
+// ==========================================================================
+// Footer
+// ==========================================================================
+
+$footer-height: 3.125rem;
