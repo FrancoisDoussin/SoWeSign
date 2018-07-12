@@ -9,7 +9,7 @@
             @php($wanted_id = str_pad($i +1, 3, '0', STR_PAD_LEFT))
             <h2>Signataire {{$signatories[$i]['id'] or $wanted_id}}</h2>
 
-            <input id="tag_number-{{$signatories[$i]['id'] or $wanted_id}}" name="signatories[{{$signatories[$i]['id'] or $wanted_id}}][tag_number]" type="text" value="{{$wanted_id}}">
+            <input id="tag_number-{{$signatories[$i]['id'] or $wanted_id}}" name="signatories[{{$signatories[$i]['id'] or $wanted_id}}][tag_number]" type="hidden" value="{{$wanted_id}}">
 
             <label for="first-name-{{$signatories[$i]['id'] or $wanted_id}}">Prénom</label>
             <input id="first-name-{{$signatories[$i]['id'] or $wanted_id}}" name="signatories[{{$signatories[$i]['id'] or $wanted_id}}][firstname]" type="text" value="{{$signatories[$i]['firstname'] or ''}}">

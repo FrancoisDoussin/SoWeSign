@@ -7,7 +7,6 @@ use App\Models\Signatory;
 use App\Repositories\RDSRepository;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
@@ -59,7 +58,9 @@ class RDSController extends Controller
         $rds->admin_last_name = $request->get('admin_last_name');
         $rds->admin_email = $request->get('admin_email');
 
-        $rds->file_path = session('file_path');
+        $file_name = str_replace('public/pdf/', '', session('file_path'));
+        $file_name = str_replace('.pdf', '', $file_name);
+        $rds->file_name = $file_name;
 
         session(['rds' => $rds]);
 

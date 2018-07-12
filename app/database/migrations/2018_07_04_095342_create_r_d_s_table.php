@@ -20,7 +20,7 @@ class CreateRDSTable extends Migration
             $table->dateTime('date')->nullable();
             $table->string('place')->nullable();
             $table->string('url')->nullable();
-            $table->string('file_path')->nullable();
+            $table->string('file_name')->nullable();
             $table->string('invitation_subject')->nullable();
             $table->string('invitation_description')->nullable();
             $table->integer('invitation_delay')->nullable();

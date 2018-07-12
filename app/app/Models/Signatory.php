@@ -14,6 +14,7 @@ class Signatory extends Model
         'company',
         'url_hash',
         'sign_coord',
+        'sign_path',
         'tag_number',
         'has_signed',
     ];

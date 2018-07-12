@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Models\Signatory;
 use Carbon\Carbon;
 use GuzzleHttp\Client;
 use Illuminate\Container\Container as Application;
@@ -9,7 +10,8 @@ use Illuminate\Support\Facades\Storage;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use App\Entities\RDS;
-use Psy\Exception\ErrorException;
+use Illuminate\Support\Facades\Log;
+use setasign\Fpdi\Fpdi;
 use Smalot\PdfParser\Parser;
 
 /**
@@ -175,6 +177,63 @@ class RDSRepository extends BaseRepository
         ];
 
         return $tags;
+    }
+
+    public function addSign(Signatory $signatory)
+    {
+        try {
+            // get rds
+            $rds = $signatory->rds;
+
+            // get pdf path, get the signed version if exists
+            if (file_exists(storage_path('app/public/pdf/signed/' . $rds->file_name . '.pdf'))) {
+                $pdf_path = storage_path('app/public/pdf/signed/' . $rds->file_name . '.pdf');
+            } else {
+                $pdf_path = storage_path('app/public/pdf/' . $rds->file_name . '.pdf');
+            }
+
+            // get sign path
+            $sign_path = storage_path('app/public' . $signatory->sign_path);
+
+            // set output path
+            $output_path = storage_path('app/public/pdf/signed/' . $rds->file_name . '.pdf');
+
+            // get page number
+            $page_number = $signatory->coord->page;
+            $x = $signatory->coord->x * 5.5; // valeur trouvée de manière empirique...
+            $y = $signatory->coord->y * 5.5;
+            $width = $signatory->coord->w * 0.3528; // tx de conversion point typographic -> mm
+            $height = $width;
+
+            // get number of pages
+            $pdfParsed = $this->parser->parseFile($pdf_path);
+            $nb_pages = $pdfParsed->getDetails()['Pages'];
+
+            // generate new pdf
+            $pdf = new Fpdi();
+
+            // create pages
+            for ($i = 1; $i <= $nb_pages; $i ++) {
+                $pdf->AddPage();
+                $pdf->setSourceFile($pdf_path);
+                $template = $pdf->importPage($i);
+                $pdf->useTemplate($template);
+
+                // add sign
+                if ($i == $page_number) {
+                    $pdf->Image($sign_path, $x, $y, $width, $height);
+                }
+            }
+
+            // export pdf
+            $pdf->Output($output_path, "F");
+
+            return 'success';
+        } catch (\Exception $e) {
+            Log::debug($e->getMessage());
+            return 'error';
+        }
+
     }
 
     /**
