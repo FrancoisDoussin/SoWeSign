@@ -182,7 +182,7 @@ class RDSController extends Controller
         return redirect('/manage/' . $rds_final->url_one_hash);
     }
 
-    public function manage(Request $request, $hash): View
+    public function manage(Request $request, $hash)
     {
         $rds = RDS::where('url_one_hash', '=', $hash)->get()->first();
 
@@ -193,7 +193,7 @@ class RDSController extends Controller
         return view('06-manage', compact('rds'));
     }
 
-    public function state(Request $request, $hash): View
+    public function state(Request $request, $hash)
     {
         $rds = RDS::where('url_two_hash', '=', $hash)->get()->first();
 

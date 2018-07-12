@@ -200,8 +200,15 @@ class RDSRepository extends BaseRepository
 
             // get page number
             $page_number = $signatory->coord->page;
-            $x = $signatory->coord->x * 5.5; // valeur trouvée de manière empirique...
-            $y = $signatory->coord->y * 5.5;
+
+            // get coords
+            $page_width = 210;
+            $page_height = 297;
+            $x = ($signatory->coord->xRatio * $page_width / 100)+1.2;
+            $y = ($signatory->coord->yRatio * $page_height / 100)-1.4;
+//            $x = $signatory->coord->x * 5.5; // valeur trouvée de manière empirique...
+//            $y = $signatory->coord->y * 5.5;
+
             $width = $signatory->coord->w * 0.3528; // tx de conversion point typographic -> mm
             $height = $width;
 
