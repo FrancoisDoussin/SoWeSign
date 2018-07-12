@@ -136,6 +136,7 @@ a, a:visited {
 h1 {
   font-size: rem(24);
   margin-bottom: rem(40);
+  font-weight: 700;
 
   strong {
     color: $primary;
@@ -150,13 +151,26 @@ h1 {
 
 /*----------  Buttons  ----------*/
 .btn {
-  padding: rem(15) rem(50);
+  display: block;
+  width: 100%;
+  padding: .5rem;
+  margin-bottom: rem(20);
 
   border: rem(1) solid;
   border-radius: rem(3);
   background-color: $white;
   text-transform: uppercase;
   font-size: rem(16);
+}
+
+@include media-breakpoint-up(sm) {
+
+  .btn {
+    display: inline-block;
+    width: auto;
+    padding: rem(15) rem(50);
+    margin-bottom: 0;
+  }
 }
 
 /*----------  Buttons - variantes de couleur  ----------*/
@@ -236,5 +250,21 @@ h1 {
   .footer__item {
     padding-top: 0;
     line-height: inherit;
+  }
+}
+
+/*----------  Forms  ----------*/
+.form-group {
+  margin-bottom: rem(40);
+}
+.form-control {
+  background-color: $light-gray;
+  font-size: rem(12);
+  line-height: rem(30);
+  border: none;
+  border-bottom: rem(1) inset $gray;
+
+  &::placeholder {
+    color: #9B9B9B;
   }
 }
