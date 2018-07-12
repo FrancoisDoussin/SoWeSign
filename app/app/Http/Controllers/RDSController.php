@@ -7,7 +7,6 @@ use App\Models\Signatory;
 use App\Repositories\RDSRepository;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
 
@@ -125,7 +124,7 @@ class RDSController extends Controller
 
             $signatory = new Signatory($request->get('signatories')[$id]);
 
-            $signatory->url_hash = uniqid('sign/');
+            $signatory->url_hash = uniqid();
 
             foreach(session('signatories_positions') as $sign_coord) {
                 if($sign_coord->user_tag == $id) {
@@ -165,11 +164,11 @@ class RDSController extends Controller
         $rds->invitation_description = $request->get('invitation_description');
         $rds->invitation_delay = $request->get('invitation_delay');
         $rds->invitation_frequency = $request->get('invitation_frequency');
-        $rds->invitation_subject = $request->get('invitation_quantity');
+        $rds->invitation_quantity = $request->get('invitation_quantity');
 
-        $rds->url_one_hash = uniqid('admin/');
-        $rds->url_two_hash = uniqid('admin/');
-        $rds->url_three_hash = uniqid('admin/');
+        $rds->url_one_hash = uniqid();
+        $rds->url_two_hash = uniqid();
+        $rds->url_three_hash = uniqid();
 
 
         $rds_final = RDS::create($rds->getAttributes());
@@ -180,21 +179,50 @@ class RDSController extends Controller
             $rds_final->signatories()->save($signatory);
         }
 
-        session(['rds_final' => $rds_final]);
-
-        return redirect('/confirmation');
+        return redirect('/manage/' . $rds_final->url_one_hash);
     }
 
-    public function confirmation(): View
+    public function manage(Request $request, $hash): View
     {
-        $rds = session('rds_final');
-        return view('06-confirmation', compact('rds'));
+        $rds = RDS::where('url_one_hash', '=', $hash)->get()->first();
+
+        if(!$rds) {
+            return redirect('/error')->with('error', "This RDS does'nt exist");
+        }
+
+        return view('06-manage', compact('rds'));
     }
 
-    private function downloadFile(Request $request): string
+    public function state(Request $request, $hash): View
     {
-        $file = $request->file('file');
-        $downloadFile = Storage::disk('public')->put('pdf', $file);
-        return Storage::disk('public')->url($downloadFile);
+        $rds = RDS::where('url_two_hash', '=', $hash)->get()->first();
+
+        if(!$rds) {
+            return redirect('/error')->with('error', "This RDS does'nt exist");
+        }
+
+        return view('state', compact('rds'));
+    }
+
+    public function download(Request $request, $hash)
+    {
+        $rds = RDS::where('url_three_hash', '=', $hash)->get()->first();
+
+        if(!$rds) {
+            return redirect('/error')->with('error', "This RDS does'nt exist");
+        }
+
+        // get pdf path, get the signed version if exists
+        if (file_exists(storage_path('app/public/pdf/signed/' . $rds->file_name . '.pdf'))) {
+            $file_path = public_path(). '/storage/pdf/signed/' . $rds->file_name . '.pdf';
+        } else {
+            $file_path = public_path() . '/storage/pdf/' . $rds->file_name . '.pdf';
+        }
+
+        $headers = [
+            'Content-Type' => 'application/pdf',
+        ];
+
+        return response()->download($file_path, 'document.pdf', $headers);
     }
 }
