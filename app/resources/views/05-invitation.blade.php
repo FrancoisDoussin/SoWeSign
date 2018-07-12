@@ -1,7 +1,7 @@
 @extends('layout.base')
 
 @section('content')
-    <h1 class="text-center">Invitation</h1>
+    <h1 class="text-center">Invitations email</h1>
 
     <form action="{{ route('store-invitation') }}" enctype="multipart/form-data" method="POST">
         @csrf
@@ -32,7 +32,8 @@
         </div>
 
         <div class="buttons">
-            <button type="submit" class="btn btn-default">Valider</button>
+            <a href="#" class="btn btn-danger mr-sm-5">Annuler</a>
+            <button type="submit" class="btn btn-default ml-sm-5">Valider</button>
         </div>
     </form>
 @endsection

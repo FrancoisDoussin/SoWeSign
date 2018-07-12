@@ -32,7 +32,8 @@
         </div>
 
         <div class="buttons">
-            <button type="submit" class="btn btn-default">Suivant</button>
+            <a href="#" class="btn btn-danger mr-sm-5">Annuler</a>
+            <button type="submit" class="btn btn-default ml-sm-5">Suivant</button>
         </div>
     </form>
 @endsection
