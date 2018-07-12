@@ -32,12 +32,15 @@ a, a:visited {
 
 /*----------  Navbar  ----------*/
 .navbar {
+  padding-top: rem(20); padding-bottom: rem(20);
   border-bottom: rem(1) solid $gray;
   background-color: $white;
   z-index: 1000;
 
   &.active { box-shadow: 0 rem(2) rem(4) 0 rgba(0,0,0,0.5); }
 }
+
+.navbar-collapse { margin-top: rem(20); }
 
 // Logo
 .navbar-brand-mobile img { width: 60%; }
@@ -95,8 +98,12 @@ a, a:visited {
 @include media-breakpoint-up(sm) {
 
   .navbar {
+    padding: 0.5rem 1rem;
+
     &.active { box-shadow: none; }
   }
+
+  .navbar-collapse { margin-top: 0; }
 
   // Logo
   .navbar-brand-mobile { display: none; }
