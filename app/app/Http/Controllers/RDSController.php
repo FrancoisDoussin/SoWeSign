@@ -165,7 +165,7 @@ class RDSController extends Controller
         $rds->invitation_description = $request->get('invitation_description');
         $rds->invitation_delay = $request->get('invitation_delay');
         $rds->invitation_frequency = $request->get('invitation_frequency');
-        $rds->invitation_subject = $request->get('invitation_quantity');
+        $rds->invitation_quantity = $request->get('invitation_quantity');
 
         $rds->url_one_hash = uniqid('admin/');
         $rds->url_two_hash = uniqid('admin/');
