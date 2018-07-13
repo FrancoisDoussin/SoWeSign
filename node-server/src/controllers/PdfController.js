@@ -32,17 +32,22 @@ export default class PdfController {
 
   _parsePDF(pdfData) {
     const pages = pdfData.formImage.Pages
+    const width = pdfData.formImage.Width
 
     const data = [];
 
     const regexp = /^(%23)(SIGN)(.*)(%23)$/
 
     for (let i = 0; i < pages.length; i++) {
+      let height = pages[i].Height
+
       pages[i].Texts.forEach(text => {
         if(text.R[0].T.match(regexp)) {
           var match = text.R[0].T.match(regexp)
           text.user_tag = match[3]
           text.page = i+1
+          text.xRatio = text.x * 100 / width
+          text.yRatio = text.y * 100 / height
           data.push(text)
         }
       })

@@ -1,5 +1,5 @@
 @extends('layout.base')
 
 @section('content')
-    Signature OK ! :)
+    Merci de votre signature ! :)
 @endsection
