@@ -1,7 +1,7 @@
 @extends('layout.base')
 
 @section('content')
-    Salut {{$signatory->firstname}} !
+
 
     <!-- Modal -->
     <div class="modal fade" id="pdfModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -10,11 +10,15 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Signature du pdf</h5>
                 </div>
-                <div>
-                    <button id="prev">Previous</button>
-                    <button id="next">Next</button>
-                    &nbsp; &nbsp;
+                <div class="text-center">
+                    <br>
+                    <h2>Bonjour {{$signatory->firstname}}</h2>
+                    <p>Veuillez lire le PDF jusqu'à la dernière page pour pouvoir signer</p>
+
                     <span>Page: <span id="page_num"></span> / <span id="page_count"></span></span>
+                    <br>
+                    <button id="prev" class="btn btn-tiny btn-default">Previous</button>
+                    <button id="next" class="btn btn-tiny btn-default">Next</button>
                 </div>
                 <canvas id="the-canvas"></canvas>
                 <div class="modal-footer">
@@ -26,16 +30,15 @@
 
     <div id="error"></div>
 
-    <div id="signature-pad" class="signature-pad">
+    <div id="signature-pad" class="signature-pad text-center">
+        <h2 class="description">Merci d'apposer votre signature dans le cadre ci-dessous</h2>
         <div class="signature-pad--body">
             <canvas style="border: 1px solid black;width: 200px; height: 200px"></canvas>
         </div>
         <div class="signature-pad--footer">
-            <div class="description">Sign above</div>
-
             <div class="signature-pad--actions">
-                <button id="save">Signer</button>
-                <button id="clear">Effacer</button>
+                <button id="save" class="btn btn-tiny  btn-default">Signer</button>
+                <button id="clear" class="btn btn-tiny  btn-danger">Effacer</button>
             </div>
         </div>
     </div>
